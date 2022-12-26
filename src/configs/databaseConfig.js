@@ -1,19 +1,10 @@
-import mangoose from "mongoose";
+import { Sequelize } from "sequelize";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-const connectDb = async () => {
-	try {
-		await mangoose.connect(process.env.DB_URI, {
-			dbName: process.env.DB_NAME,
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-		});
+const db = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+	host: process.env.ORM_HOST,
+	dialect: process.env.ORM_DIALECT,
+});
 
-		const db = mangoose.connection;
-		db.on("error", (error) => console.log(error));
-		db.once("open", () => console.log(`Database connect to server: ${db.host}`));
-	} catch (error) {
-		console.info(error);
-	}
-};
-
-export default connectDb;
+export default db;

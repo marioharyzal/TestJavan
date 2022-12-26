@@ -1,9 +1,4 @@
-import express from "express";
-
-const app = express();
-
 const errorLogger = (error, req, res, next) => {
-	console.log(`error : ${error.message}`);
 	next(error);
 };
 
