@@ -1,34 +1,30 @@
 import { DataTypes } from "sequelize";
 import db from "../configs/databaseConfig.js";
 
-const Family = db.define(
-	"family",
+const Product = db.define(
+	"product",
 	{
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		name: {
+		product_title: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		gender: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		id_parent: {
+		product_price: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 		},
 	},
 	{
-		tableName: "family",
+		tableName: "product",
 		timestamps: false,
 		createdAt: false,
 	}
 );
 
-Family === db.models.Family;
+Product === db.models.Product;
 
-export default Family;
+export default Product;
